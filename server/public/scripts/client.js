@@ -19,11 +19,13 @@ function addBook(bookToAdd) {
     method: 'POST',
     url: '/books',
     data: bookToAdd,
-    }).then(function(response) {
+  })
+    .then(function (response) {
       console.log('addBook()', response.data);
       refreshBooks();
-    }).catch(function(error) {
-      console.log('Error in POST', error)
+    })
+    .catch(function (error) {
+      console.log('Error in POST', error);
       alert('Unable to add book at this time. Please try again later.');
     });
 }
@@ -32,29 +34,33 @@ function addBook(bookToAdd) {
 function refreshBooks() {
   axios({
     method: 'GET',
-    url: '/books'
-  }).then(function(response) {
-    console.log('refreshBooks() response', response.data);
-    renderBooks(response.data);
-  }).catch(function(error){
-    console.log('error in GET', error);
-  });
+    url: '/books',
+  })
+    .then(function (response) {
+      console.log('refreshBooks() response', response.data);
+      renderBooks(response.data);
+    })
+    .catch(function (error) {
+      console.log('error in GET', error);
+    });
 }
-
 
 // Displays an array of books to the DOM
 function renderBooks(books) {
-  const bookshelf = document.getElementById('bookShelf')
+  const bookshelf = document.getElementById('bookShelf');
   bookshelf.innerHTML = '';
 
-  for(let i = 0; i < books.length; i += 1) {
+  for (let i = 0; i < books.length; i += 1) {
     let book = books[i];
     // For each book, append a new row to our table
-    bookshelf.innerHTML += (`
+    bookshelf.innerHTML += `
       <tr>
+        <td class="readButton" data-bookid="${book.id}">
+          <button>Mark as Read</button>
+        </td>
         <td>${book.title}</td>
         <td>${book.author}</td>
       </tr>
-    `);
+    `;
   }
 }
