@@ -45,6 +45,31 @@ function refreshBooks() {
     });
 }
 
+// function to mark book as read
+// function markAsRead(event) {
+//   console.log(event.target.dataset);
+//   const bookid = event.target.closest('tr').dataset.bookid;
+// axios ({
+//   method: 'PUT',
+//   url: `/books/${bookid}`
+// }).then() => {
+
+// }
+// }
+
+// function to delete book
+function deleteBook(bookId) {
+  axios
+    .delete(`/books/${bookId}`)
+    .then((response) => {
+      refreshBooks();
+    })
+    .catch((error) => {
+      console.log('Error', error);
+      alert('something went wrong');
+    });
+}
+
 // Displays an array of books to the DOM
 function renderBooks(books) {
   const bookshelf = document.getElementById('bookShelf');
@@ -56,7 +81,7 @@ function renderBooks(books) {
     bookshelf.innerHTML += `
       <tr>
         <td class="readButton" data-bookid="${book.id}">
-          <button>Mark as Read</button>
+          <button onClick="deleteBook(bookId)">Mark as Read</button>
         </td>
         <td>${book.title}</td>
         <td>${book.author}</td>
