@@ -36,7 +36,7 @@ Add another button to each book allowing the user to `Mark as Read`. This button
 
 ### Additional Features
 
-- [ ] Add validation to the add input form
+- [X] Add validation to the add input form
   - The client-side code should make sure that required fields are filled in. You can do this by making the HTML inputs required. Make sure to do something so the user can tell which fields are required.
   - The server-side should also check that it gets all required fields. If required fields are missing, send back a 400 status code.
 - [ ] Add a way to change the order in which books are shown - sort by title vs sort by author

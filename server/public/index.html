@@ -15,11 +15,13 @@
     <main>
       <section>
         <h3>Add New Book</h3>
-        <label>Title:</label><input type="text" name="" value="" id="title" size="50" />
-        <br />
-        <label>Author:</label><input type="text" name="" value="" id="author" size="50" />
-        <br />
-        <button type="button" onclick="submitBook(event)">Submit</button>
+        <form onSubmit="submitBook(event)">
+          <label>Title:</label><input type="text" name="" value="" id="title" size="50" required />
+          <br />
+          <label>Author:</label><input type="text" name="" value="" id="author" size="50" required />
+          <br />
+          <button type="submit">Submit</button>
+        </form>
       </section>
       <section>
         <div>
