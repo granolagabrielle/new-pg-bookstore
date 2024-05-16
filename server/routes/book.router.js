@@ -41,17 +41,18 @@ router.post('/', (req, res) => {
 // Updates a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
 // Request body must include the content to update - the status
-// router.put('/:bookid', (req, res) => {
-//   console.log('req.params', req.params);
-//   const queryText = `UPDATE "books" SET "isRead"=true WHERE "id"=$1 RETURNING *;`;
-//   pool
-//     .query(queryText, [req.params.bookid])
-//     .then((result) => res.send(result.rows[0]))
-//     .catch((error) => {
-//       console.error(`ERROR querying: `, error);
-//       res.status(500).send(error);
-//     });
-// });
+router.put('/:bookid', (req, res) => {
+  let bookID = req.params.bookid;
+  console.log('req.params.bookid', req.params.bookid);
+  const queryText = `UPDATE "books" SET "isRead"=true WHERE "id"=$1 RETURNING *;`;
+  pool
+    .query(queryText, [bookID])
+    .then((result) => res.sendStatus(204))
+    .catch((error) => {
+      console.error(`ERROR querying: `, error);
+      res.status(500).send(error);
+    });
+});
 
 // TODO - DELETE
 // Removes a book to show that it has been read

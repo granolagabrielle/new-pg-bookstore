@@ -46,17 +46,22 @@ function refreshBooks() {
 }
 
 // function to mark book as read
-// function markAsRead(event) {
-//   console.log(event.target.dataset);
-//   console.log(event.target.closest('tr').dataset);
-//   const bookid = event.target.closest('tr').dataset.bookId;
-// axios ({
-//   method: 'PUT',
-//   url: `/books/${bookId}`
-// }).then() => {
-
-// }
-// }
+function markAsRead(event) {
+  console.log(event.target.dataset);
+  console.log(event.target.closest('tr').dataset);
+  const bookid = event.target.closest('tr').dataset.bookid;
+  axios({
+    method: 'PUT',
+    url: `/books/${bookid}`,
+  })
+    .then((response) => {
+      refreshBooks();
+    })
+    .catch((error) => {
+      console.log('Error', error);
+      alert('error marking as read');
+    });
+}
 
 // function to delete book
 function deleteBook(bookId) {
@@ -80,11 +85,11 @@ function renderBooks(books) {
     let book = books[i];
     // For each book, append a new row to our table
     bookshelf.innerHTML += `
-      <tr>
+      <tr data-bookid="${book.id}">
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.isRead}</td>
-        <td class="readButton" data-bookid="${book.id}">
+        <td class="readButton">
           <button onClick="markAsRead(event)">Mark as Read</button>
         </td>
         <td>

@@ -26,7 +26,7 @@ Add another button to each book allowing the user to `Mark as Read`. This button
 
 ### Task list
 
-- [] Button that makes an HTTP DELETE request
+- [X] Button that makes an HTTP DELETE request
 - [X] Server-side DELETE route
 - [ ] Button that makes an HTTP PUT request
 - [ ] Server-side PUT route
